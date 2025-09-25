@@ -1,0 +1,55 @@
+#mainProximamente{
+    .hero-image{
+        background-image: url(../../images/patronHero.svg);
+        height: 1000px;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        .hero-text{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000000;
+            font-family: 'Montserrat', sans-serif;
+
+            h1{
+                color: #085C5A;
+                animation: fadeInUp 1s ease-in-out;
+            }
+            p {
+                animation: fadeInUp 1.5s ease-in-out;
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .hero-image{
+        background-image: url(../../images/patronHero.svg);
+        height: 1000px;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        .hero-text{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000000;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            h1{
+                color: #085C5A;
+                animation: fadeInUp 1s ease-in-out;
+            }
+            p {
+                animation: fadeInUp 1.5s ease-in-out;
+            }
+        }
+    }
+}

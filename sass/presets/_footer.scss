@@ -1,0 +1,138 @@
+/* ---------------------estilos en footer */
+
+#footer{
+
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 130px;
+
+    .footerNewsletter{
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        color: aliceblue;
+        gap: 5px;
+        font-size: 15px;
+
+        input{
+            border-radius: 10px 0px 0 10px;
+            padding: 2px 2px 2px 10px;
+            background-color: #d8d8d8;
+            height: 30px;
+            border: #d8d8d8;
+        }
+
+        button{
+            border-radius: 0px 10px 10px 0px;
+            padding: 2px 10px 2px 10px;
+            background-color:#085C5A;
+            color: aliceblue;
+            border: #085C5A;
+            height: 30px;
+            transition:.1.5s ease;
+        }
+
+        button:hover{
+            transform: scale(1.02)
+        }
+    }
+
+    .footerLogo{
+        background-color: rgb(0, 0, 0);
+        height: 100%;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        
+        .footerCopy{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color:aliceblue;
+        }
+    }
+
+    .footerRedes{
+        background-color: rgb(0, 0, 0);
+        height: 100%;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-color: rgb(0, 0, 0);
+        
+        .footerRedesSociales{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .footerPagos{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+    }
+    }
+
+@media (max-width: 765px) {
+
+    #footer{
+        background-color: rgb(0, 0, 0);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 100%;
+        }
+
+        .footerNewsletter input{
+    border-radius: 10px 0px 0 10px;
+    padding: 2px 2px 2px 10px;
+    background-color: #d8d8d8;
+    height: 30px;
+    border: #d8d8d8;
+}
+
+.footerNewsletter button{
+    border-radius: 0px 10px 10px 0px;
+    padding: 2px 10px 2px 10px;
+    background-color:#085C5A;
+    color: aliceblue;
+    border: #085C5A;
+    height: 30px;
+}
+
+
+    .footerLogo{
+        background-color: rgb(0, 0, 0);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 10px ;
+        z-index: 1;
+    }
+
+    .footerRedes{
+        background-color: rgb(0, 0, 0);
+        height: 100%;
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-color: rgb(0, 0, 0);
+    }
+}

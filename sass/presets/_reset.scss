@@ -1,0 +1,47 @@
+/*Tipografia Montserrat*/
+@font-face {
+    font-family: "montserrat";
+    src: url(../fonts/montserrat/Montserrat-VariableFont_wght.ttf);
+}
+/*Tipografia Roboto*/
+@font-face {
+    font-family: "roboto";
+    src: url(../fonts/Roboto/Roboto-Black.ttf);
+    src: url(../fonts/Roboto/Roboto-Medium.ttf);
+}
+/*-------------------------- RESETEO DE HTML */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    list-style:none ;
+}
+
+li{
+    display: flex;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+
+/* //////////////////////////// FIN RESET /////////////// */

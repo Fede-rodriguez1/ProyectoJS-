@@ -1,0 +1,53 @@
+/* ESTILOS PARA SUBMENU------ GENERALES */
+
+#mainCardsColecciones{
+    display:flex ;
+    flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px;
+    min-height: 100%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 100 ;
+    row-gap: 50px;
+    animation: fadeInUp 1.5s ease-in-out;
+    .mainCardsColecciones1, .mainCardsColecciones2, .mainCardsColecciones3{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 22px;
+            article{
+                background-color:#05302f;
+                color: white;
+                border-radius: 10px 10px 0px 0px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                width: calc(25% - 20px); 
+                min-width: 200px; 
+                max-width: 300px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: left;
+                text-align: left;
+                position:relative ;
+                transition: box-shadow 0.5s ease, border-radius 0.5s ease, transform 0.5s ease;  
+            }
+            article:hover {
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); 
+                border-radius: 5px 5px 0px 0px;
+                transform: scale(1.02); 
+            }   
+        .mainColeccionesTextos{
+            padding-left: 10px;
+        }
+        .mainColeccionesTextos:hover{
+            padding-left: 10px;
+            color: #f1f1f1;
+            cursor: pointer;
+        }
+        }
+} 
+/* FIN DE ESTILOS CARD COLECCIONES GENERALES */
+

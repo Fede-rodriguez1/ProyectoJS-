@@ -1,0 +1,121 @@
+/*--------------------------- ESTILOS PARA COLECCIONES */
+
+#mainColecciones{
+    display:flex ;
+    flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 100px;
+    min-height: 100vh;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 100 ;
+    
+    /* CARACTERISTICAS GENERALES PARA FILA 1 */
+    .mainColecciones1  {
+        flex-wrap: wrap;
+        color: aliceblue;
+        display: flex;
+        justify-content: center;
+        
+        article{
+            padding: 10px 10px;
+            justify-content: center;
+            align-items: center;
+            width: 435px;
+            height: 403px;
+        }
+
+        img{
+            border-radius: 40px 40px 0px 0px ;
+            position: relative;
+            transition: box-shadow 0.5s ease, border-radius 0.5s ease;
+        }
+        img:hover {
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); 
+            border-radius: 20px 20px 0px 0px; 
+        }                                     
+        a{
+            color: #ffffff;
+        }        
+        a:hover{
+            color: #cecece;
+        }
+        h4{
+            position:absolute;
+            background-color: #05302f;
+            width: 415px;
+            color: white;
+            padding-left: 125px;
+        }
+        .mainCard2 h4{
+            padding-left: 140px;
+        }
+        .mainCard3 h4{
+            padding-left: 155px;
+        }
+
+    }
+    .mainColecciones2  {
+        flex-wrap: wrap;
+        color: aliceblue;
+        display: flex;
+        justify-content: center;
+        
+        article{
+            padding: 10px 10px;
+            justify-content: center;
+            align-items: center;
+            width: 435px;
+            height: 403px;
+        }
+        img{
+            border-radius: 40px 40px 0px 0px ;
+            position:relative ;
+            transition: box-shadow 0.5s ease, border-radius 0.5s ease;
+        }
+        img:hover {
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); 
+            border-radius: 20px 20px 0px 0px; 
+        }                           
+        
+        a{
+            color: #ffffff;
+        }
+        a:hover{
+            color: #cecece;
+        }
+        
+        h4{
+            position:absolute;
+            background-color: #05302f;
+            width: 415px;
+            color: white;
+            padding-left: 110px;
+        }
+        .mainCard6 h4{
+            padding-left: 165px;
+        }
+
+    }
+}
+
+@media (max-width: 430px) {
+    .mainColecciones1, .mainColecciones2 {
+        article {
+            width: 100%; // Se adapta al 100% del contenedor
+            height: auto;
+        }
+
+        h4 {
+            width: 100%; // Asegura que el <h4> siga el tamaño de la imagen
+            padding: 8px 0; // Ajuste de padding
+        }
+    }
+}
+
+
+/* --------------------FIN DE ESTILOS PARA COLECCIONES */
+
+
+
