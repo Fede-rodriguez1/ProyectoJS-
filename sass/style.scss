@@ -2,10 +2,9 @@
 @use "presets/body";
 @use "presets/header";
 @use "presets/footer";
+@use "presets/submenuColecciones";
 
-//PAGES______
-@use "pages-sass/pageIndex";
-@use "pages-sass/pageColecciones";  
+//PAGES______ 
 @use "pages-sass/pageCarrito";
 @use "pages-sass/pageProximamente";
 

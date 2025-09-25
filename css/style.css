@@ -185,208 +185,58 @@ a {
     background-color: rgb(0, 0, 0);
   }
 }
-/*------------------ESTILOS PARA INDEX */
-#mainIndex {
-  background-color: rgb(247, 247, 247);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-top: 80px;
-  text-align: center;
-}
-#mainIndex .mainBoxIndex {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-#mainIndex .mainBoxIndex article {
-  overflow: hidden;
-}
-#mainIndex .mainBoxIndex article img {
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-#mainIndex .mainBoxIndex article img:hover {
-  transform: scale(1.02);
-}
-#mainIndex .mainBoxIndex article p {
-  transition: 0.5s ease;
-}
-#mainIndex .mainBoxIndex article p:hover {
-  text-decoration: underline;
-  transform: none;
-  cursor: pointer;
-}
-#mainIndex .mainBoxIndex1 {
-  position: relative;
-}
-#mainIndex .mainBoxIndex1 button {
-  position: absolute;
-  top: 50%;
-  left: 50px;
-  z-index: 2;
-  background-color: aliceblue;
-  color: rgb(255, 255, 255);
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
-  transform: translateY(-50%);
-}
-#mainIndex .mainBoxIndex1 button:hover {
-  background-color: #c2c2c2;
-}
-#mainIndex .mainBoxIndex2 {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-#mainIndex .mainBoxIndex2 article img {
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-#mainIndex .mainBoxIndex2 article img:hover {
-  transform: scale(1.02);
-}
-#mainIndex .mainBoxIndex2 article p {
-  transition: 0.5s ease;
-}
-#mainIndex .mainBoxIndex2 article p:hover {
-  text-decoration: underline;
-  transform: none;
-  cursor: pointer;
-}
-#mainIndex .mainBoxIndex3 {
-  position: relative;
-  margin-bottom: 20px;
-}
-#mainIndex .mainBoxIndex3 button {
-  position: absolute;
-  top: 50%;
-  left: 50px;
-  z-index: 2;
-  background-color: aliceblue;
-  color: rgb(255, 255, 255); /*no cambia */
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
-  transform: translateY(-50%);
-}
-#mainIndex .mainBoxIndex3 button:hover {
-  background-color: #c2c2c2;
-}
-
-/*--------------------------- ESTILOS PARA COLECCIONES */
-#mainColecciones {
+/* ESTILOS PARA SUBMENU------ GENERALES */
+#mainCardsColecciones {
   display: flex;
   flex-direction: column;
   background-color: rgb(247, 247, 247);
   max-width: 1400px;
   margin: 0 auto;
-  padding-top: 100px;
-  min-height: 100vh;
+  padding: 100px;
+  min-height: 100%;
   font-family: "Montserrat", sans-serif;
   font-weight: 100;
-  /* CARACTERISTICAS GENERALES PARA FILA 1 */
+  row-gap: 50px;
+  animation: fadeInUp 1.5s ease-in-out;
 }
-#mainColecciones .mainColecciones1 {
-  flex-wrap: wrap;
-  color: aliceblue;
+#mainCardsColecciones .mainCardsColecciones1, #mainCardsColecciones .mainCardsColecciones2, #mainCardsColecciones .mainCardsColecciones3 {
   display: flex;
-  justify-content: center;
-}
-#mainColecciones .mainColecciones1 article {
-  padding: 10px 10px;
-  justify-content: center;
-  align-items: center;
-  width: 435px;
-  height: 403px;
-}
-#mainColecciones .mainColecciones1 img {
-  border-radius: 40px 40px 0px 0px;
-  position: relative;
-  transition: box-shadow 0.5s ease, border-radius 0.5s ease;
-}
-#mainColecciones .mainColecciones1 img:hover {
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 20px 20px 0px 0px;
-}
-#mainColecciones .mainColecciones1 a {
-  color: #ffffff;
-}
-#mainColecciones .mainColecciones1 a:hover {
-  color: #cecece;
-}
-#mainColecciones .mainColecciones1 h4 {
-  position: absolute;
-  background-color: #05302f;
-  width: 415px;
-  color: white;
-  padding-left: 125px;
-}
-#mainColecciones .mainColecciones1 .mainCard2 h4 {
-  padding-left: 140px;
-}
-#mainColecciones .mainColecciones1 .mainCard3 h4 {
-  padding-left: 155px;
-}
-#mainColecciones .mainColecciones2 {
+  flex-direction: row;
   flex-wrap: wrap;
-  color: aliceblue;
-  display: flex;
-  justify-content: center;
+  gap: 22px;
 }
-#mainColecciones .mainColecciones2 article {
-  padding: 10px 10px;
-  justify-content: center;
-  align-items: center;
-  width: 435px;
-  height: 403px;
-}
-#mainColecciones .mainColecciones2 img {
-  border-radius: 40px 40px 0px 0px;
-  position: relative;
-  transition: box-shadow 0.5s ease, border-radius 0.5s ease;
-}
-#mainColecciones .mainColecciones2 img:hover {
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  border-radius: 20px 20px 0px 0px;
-}
-#mainColecciones .mainColecciones2 a {
-  color: #ffffff;
-}
-#mainColecciones .mainColecciones2 a:hover {
-  color: #cecece;
-}
-#mainColecciones .mainColecciones2 h4 {
-  position: absolute;
+#mainCardsColecciones .mainCardsColecciones1 article, #mainCardsColecciones .mainCardsColecciones2 article, #mainCardsColecciones .mainCardsColecciones3 article {
   background-color: #05302f;
-  width: 415px;
   color: white;
-  padding-left: 110px;
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: calc(25% - 20px);
+  min-width: 200px;
+  max-width: 300px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  position: relative;
+  transition: box-shadow 0.5s ease, border-radius 0.5s ease, transform 0.5s ease;
 }
-#mainColecciones .mainColecciones2 .mainCard6 h4 {
-  padding-left: 165px;
+#mainCardsColecciones .mainCardsColecciones1 article:hover, #mainCardsColecciones .mainCardsColecciones2 article:hover, #mainCardsColecciones .mainCardsColecciones3 article:hover {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 5px 5px 0px 0px;
+  transform: scale(1.02);
+}
+#mainCardsColecciones .mainCardsColecciones1 .mainColeccionesTextos, #mainCardsColecciones .mainCardsColecciones2 .mainColeccionesTextos, #mainCardsColecciones .mainCardsColecciones3 .mainColeccionesTextos {
+  padding-left: 10px;
+}
+#mainCardsColecciones .mainCardsColecciones1 .mainColeccionesTextos:hover, #mainCardsColecciones .mainCardsColecciones2 .mainColeccionesTextos:hover, #mainCardsColecciones .mainCardsColecciones3 .mainColeccionesTextos:hover {
+  padding-left: 10px;
+  color: #f1f1f1;
+  cursor: pointer;
 }
 
-@media (max-width: 430px) {
-  .mainColecciones1 article, .mainColecciones2 article {
-    width: 100%;
-    height: auto;
-  }
-  .mainColecciones1 h4, .mainColecciones2 h4 {
-    width: 100%;
-    padding: 8px 0;
-  }
-}
-/* --------------------FIN DE ESTILOS PARA COLECCIONES */
+/* FIN DE ESTILOS CARD COLECCIONES GENERALES */
 #mainProximamente .hero-image {
   background-image: url(../../images/patronHero.svg);
   height: 1000px;

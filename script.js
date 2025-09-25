@@ -2,11 +2,18 @@
 // Se utiliza un array de objetos para manejar los productos.
 // Esto es más escalable y cumple con el requisito de usar arrays.
 const productos = [
-    { id: "1", nombre: "Cuadro Basquiat", precio: 3450 },
-    { id: "2", nombre: "Cuadro Frida Kahlo", precio: 4380 },
-    { id: "3", nombre: "Cuadro Van Gogh", precio: 1195 },
-    { id: "4", nombre: "Cuadro Picasso", precio: 3120 },
-    { id: "5", nombre: "Cuadro Monet", precio: 3285 }
+    { id: "1", nombre: "Koson N°1", precio: 1590 },
+    { id: "2", nombre: "Set x2 Van Gogh", precio: 2650 },
+    { id: "3", nombre: "Set x2 Mark Rothko", precio: 2650 },
+    { id: "4", nombre: "Picasso N°1", precio: 1590 },
+    { id: "5", nombre: "Sekka N°1", precio: 1590 },
+    { id: "6", nombre: "Matisse N°1", precio: 1590 },
+    { id: "7", nombre: "Hokusai N°1", precio: 1590 },
+    { id: "8", nombre: "Set x2 Banksy", precio: 2650 },
+    { id: "9", nombre: "Kandinsky N°1", precio: 1590 },
+    { id: "10", nombre: "Frida Kahlo N°1", precio: 1590 },
+    { id: "11", nombre: "Basquiat N°1", precio: 1590 },
+    { id: "12", nombre: "Monet N°1", precio: 1590 }
 ];
 
 // Datos del usuario registrado.
@@ -17,25 +24,63 @@ const carrito = [];
 
 
 // --------------------- FUNCIONES DE LA APLICACIÓN ---
-/**
- * Función de ENTRADA: Inicia el proceso solicitando datos al usuario para el login.
- */
-function solicitarDatosUsuario() {
-    let usuario = prompt('Ingrese su usuario:');
-    let pass = prompt('Ingrese su contraseña:');
+// Inicializar flujo de login mediante modal Bootstrap cuando el DOM está listo
+document.addEventListener('DOMContentLoaded', function () {
+    // Verificar si ya está logueado
+    const isLoggedIn = localStorage.getItem('userLoggedIn');
+    
+    if (isLoggedIn === 'true') {
+        // Si ya está logueado, inicializar directamente
+        inicializarEventosCompra();
+        return;
+    }
 
+    const modalElement = document.getElementById('loginModal');
+    const form = document.getElementById('loginForm');
+    const errorElement = document.getElementById('loginError');
 
-      
-    // Si la validación es exitosa, se inicia el carrito.
-    let mensaje = validarDatos(usuario, pass);
-    if (mensaje == "") {
-//invocamos la funcion iniciar carrito
-        iniciarCarrito();
-       
-}else{
-    console.log(mensaje);
-    alert(mensaje);
-}
+    if (modalElement && form) {
+        const loginModal = new bootstrap.Modal(modalElement, { backdrop: 'static', keyboard: false });
+        loginModal.show();
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const usuario = document.getElementById('usuario').value.trim().toLowerCase();
+            const pass = document.getElementById('contraseña').value;
+
+            const mensaje = validarDatos(usuario, pass);
+            if (mensaje === "") {
+                if (errorElement) {
+                    errorElement.textContent = "";
+                }
+                // Guardar login en localStorage
+                localStorage.setItem('userLoggedIn', 'true');
+                localStorage.setItem('userName', usuario);
+                loginModal.hide();
+                inicializarEventosCompra();
+            } else {
+                if (errorElement) {
+                    errorElement.textContent = mensaje.replaceAll('\n', ' ');
+                } else {
+                    alert(mensaje);
+                }
+            }
+        });
+    }
+});
+
+function inicializarEventosCompra() {
+    // Delegación: escuchar clicks en todos los botones .btn-comprar
+    document.querySelectorAll('.btn-comprar').forEach(function (boton) {
+        boton.addEventListener('click', function (e) {
+            const id = e.currentTarget.getAttribute('data-product-id');
+            const productoEncontrado = productos.find(p => p.id === id);
+            if (productoEncontrado) {
+                carrito.push(productoEncontrado);
+                alert(`👍 Se agregó "${productoEncontrado.nombre}" a tu carrito.`);
+            }
+        });
+    });
 }
 
 // en este caso los parametros usuario y pass son los datos ingresados por el usuario y dentro de la misma siempre deben llamarse igual
@@ -61,49 +106,13 @@ function validarDatos(usuario, pass) {
 return mensaje;
 }
 
-//invocamos la funcion
-solicitarDatosUsuario();
+// el flujo de login se inicia automáticamente con el modal en DOMContentLoaded
 
 /**
  * Función principal que gestiona la lógica del carrito de compras.
  */
 function iniciarCarrito() {
- let finalizarCarrito = false;
-
- let listadoProductos = " ingrese el codigo del producto que desea comprar:\n\n";
-
- for (const producto of productos) {
-    listadoProductos += `Cod ${producto.id} - ${producto.nombre} - $${producto.precio}\n`;
- }
-
- listadoProductos += "\nPresione cancelar para finalizar la compra.";   
-
- alert("Bienvenido al carrito de compras, los productos disponibles son: \n" + listadoProductos);
-
- while (!finalizarCarrito) {
-    let codigo = prompt(listadoProductos);
-    const productoEncontrado = productos.find(p => p.id === codigo);
-
-        if (productoEncontrado) {
-            // Si se encuentra, se agrega al carrito.
-            carrito.push(productoEncontrado);
-            alert(`👍 Se agregó "${productoEncontrado.nombre}" a tu carrito.`);
-        } else {
-            // Si el código no es válido o el usuario presiona "Cancelar".
-            if (codigo === null) {
-                finalizarCarrito = true; // Termina el bucle.
-            } else {
-                alert("Código no válido. Por favor, ingrese un código de la lista.");
-            }
- }
-
-}
-// Al finalizar, solo se muestra el resumen si se agregaron productos.
-    if (carrito.length > 0) {
-        mostrarResumenCompra();
-    } else {
-        alert("Tu carrito está vacío. ¡Gracias por tu visita!");
-    }
+ // Flujo obsoleto: mantenido por compatibilidad si se llama en otra página
 }
 
 function mostrarResumenCompra() {
