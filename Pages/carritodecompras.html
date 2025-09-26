@@ -17,8 +17,14 @@
 
     <title>Carrito</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-
-</head>
+    
+    <!-- Scripts modulares -->
+    <script defer src="../js/productos.js"></script>
+    <script defer src="../js/autenticacion.js"></script>
+    <script defer src="../js/carrito.js"></script>
+    <script defer src="../js/modales.js"></script>
+    <script defer src="../js/interfaz.js"></script>
+    <script defer src="../js/aplicacion.js"></script>
 
 
 <body id="bodyCarrito">
@@ -184,9 +190,78 @@
     
         </footer>
 
+    <!-- Modal de Carrito Vacío -->
+    <div class="modal fade" id="carritoVacioModal" tabindex="-1" aria-labelledby="carritoVacioModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="carritoVacioModalLabel">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Carrito Vacío
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-shopping-cart text-muted" style="font-size: 3rem;"></i>
+                    </div>
+                    <p class="mb-0">Tu carrito está vacío. Agrega algunos productos para continuar.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a href="../index.html" class="btn btn-primary">Ir a Comprar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Resumen de Compra -->
+    <div class="modal fade" id="resumenCompraModal" tabindex="-1" aria-labelledby="resumenCompraModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="resumenCompraModalLabel">
+                        <i class="fas fa-receipt me-2"></i>Resumen de Compra
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="resumenCompraContenido">
+                        <!-- El contenido se llenará dinámicamente -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="confirmarCompraBtn">Confirmar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Agradecimiento -->
+    <div class="modal fade" id="agradecimientoModal" tabindex="-1" aria-labelledby="agradecimientoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="agradecimientoModalLabel">
+                        <i class="fas fa-heart me-2"></i>¡Gracias por tu Compra!
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-gift text-success" style="font-size: 3rem;"></i>
+                    </div>
+                    <p class="mb-0">Tu compra se ha procesado exitosamente. ¡Esperamos verte pronto!</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="../index.html" class="btn btn-success w-100">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
     </script>
-    <script defer src="../script.js"></script>
 
     
 </body>

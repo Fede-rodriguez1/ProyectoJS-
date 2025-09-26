@@ -5,7 +5,6 @@
 @use "presets/submenuColecciones";
 
 //PAGES______ 
-@use "pages-sass/pageCarrito";
-@use "pages-sass/pageProximamente";
-@use "pages-sass/pageIndex";
-
+@use "pages-sass/pageCarrito" as *;
+@use "pages-sass/pageProximamente" as *;
+@use "pages-sass/pageIndex" as *;
