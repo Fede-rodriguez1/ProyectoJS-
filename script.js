@@ -19,8 +19,8 @@ const productos = [
 // Datos del usuario registrado.
 const userRegistrado = "santiago";
 const passwordRegistrada = "pass12345";
-// El carrito de compras inicia como un array vacío.
-const carrito = [];
+// El carrito de compras se inicializa desde localStorage o como array vacío.
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 
 // --------------------- FUNCIONES DE LA APLICACIÓN ---
@@ -76,11 +76,278 @@ function inicializarEventosCompra() {
             const id = e.currentTarget.getAttribute('data-product-id');
             const productoEncontrado = productos.find(p => p.id === id);
             if (productoEncontrado) {
-                carrito.push(productoEncontrado);
-                alert(`👍 Se agregó "${productoEncontrado.nombre}" a tu carrito.`);
+                agregarAlCarrito(productoEncontrado);
             }
         });
     });
+    
+    // Inicializar página de carrito si estamos en ella
+    if (document.getElementById('mainCarrito')) {
+        inicializarPaginaCarrito();
+    }
+}
+
+// Función para agregar productos al carrito
+function agregarAlCarrito(producto) {
+    // Buscar si el producto ya existe en el carrito
+    const productoExistente = carrito.find(item => item.id === producto.id);
+    
+    if (productoExistente) {
+        // Si ya existe, incrementar la cantidad
+        productoExistente.cantidad += 1;
+    } else {
+        // Si no existe, agregarlo con cantidad 1
+        carrito.push({
+            ...producto,
+            cantidad: 1
+        });
+    }
+    
+    // Guardar en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    
+    // Mostrar mensaje de confirmación
+    alert(`👍 Se agregó "${producto.nombre}" a tu carrito.`);
+    
+    // Actualizar contador del carrito si existe
+    actualizarContadorCarrito();
+}
+
+// Función para inicializar la página de carrito
+function inicializarPaginaCarrito() {
+    const mainCarrito = document.getElementById('mainCarrito');
+    if (!mainCarrito) return;
+    
+    // Ocultar sección de carrito vacío por defecto
+    const carritoVacio = document.querySelector('.mainCarritoVacio');
+    if (carritoVacio) {
+        carritoVacio.style.display = 'none';
+    }
+    
+    // Crear sección de productos del carrito
+    crearSeccionProductosCarrito();
+    
+    // Mostrar productos si hay alguno en el carrito
+    if (carrito.length > 0) {
+        mostrarProductosCarrito();
+    } else {
+        mostrarCarritoVacio();
+    }
+}
+
+// Función para crear la estructura HTML de productos del carrito
+function crearSeccionProductosCarrito() {
+    const mainCarrito = document.getElementById('mainCarrito');
+    
+    // Crear contenedor principal del carrito
+    const carritoContainer = document.createElement('section');
+    carritoContainer.className = 'mainCarritoProductos';
+    carritoContainer.innerHTML = `
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Tu carrito</h2>
+                    <div id="listaProductos" class="lista-productos">
+                        <!-- Los productos se cargarán aquí -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="resumen-carrito">
+                        <h3>Resumen de compra</h3>
+                        <div class="resumen-detalle">
+                            <div class="subtotal">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">$0</span>
+                            </div>
+                            <div class="total">
+                                <span>Total:</span>
+                                <span id="total">$0</span>
+                            </div>
+                        </div>
+                        <button id="btnFinalizarCompra" class="btn btn-primary btn-lg w-100 mt-3">
+                            Finalizar Compra
+                        </button>
+                        <a href="../index.html" class="btn btn-outline-secondary w-100 mt-2">
+                            Seguir Comprando
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Insertar antes de las recomendaciones
+    const recomendaciones = document.querySelector('.mainCarritoRecomendacion');
+    if (recomendaciones) {
+        mainCarrito.insertBefore(carritoContainer, recomendaciones);
+    } else {
+        mainCarrito.appendChild(carritoContainer);
+    }
+    
+    // Agregar event listeners
+    document.getElementById('btnFinalizarCompra').addEventListener('click', finalizarCompra);
+}
+
+// Función para mostrar los productos en el carrito
+function mostrarProductosCarrito() {
+    const listaProductos = document.getElementById('listaProductos');
+    const carritoVacio = document.querySelector('.mainCarritoVacio');
+    const carritoProductos = document.querySelector('.mainCarritoProductos');
+    
+    if (!listaProductos) return;
+    
+    // Ocultar carrito vacío y mostrar productos
+    if (carritoVacio) carritoVacio.style.display = 'none';
+    if (carritoProductos) carritoProductos.style.display = 'block';
+    
+    // Limpiar lista actual
+    listaProductos.innerHTML = '';
+    
+    // Crear elementos para cada producto
+    carrito.forEach(producto => {
+        const productoElement = document.createElement('div');
+        productoElement.className = 'producto-carrito';
+        productoElement.innerHTML = `
+            <div class="row align-items-center mb-3 p-3 border rounded">
+                <div class="col-md-2">
+                    <img src="../images/artistas${producto.id}.jpg" alt="${producto.nombre}" class="img-fluid rounded">
+                </div>
+                <div class="col-md-4">
+                    <h5>${producto.nombre}</h5>
+                    <p class="text-muted">Precio unitario: $${producto.precio}</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="cantidad-controls">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad('${producto.id}', -1)">-</button>
+                        <span class="mx-2">${producto.cantidad}</span>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad('${producto.id}', 1)">+</button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <p class="fw-bold">$${producto.precio * producto.cantidad}</p>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-sm btn-danger" onclick="eliminarProducto('${producto.id}')">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        listaProductos.appendChild(productoElement);
+    });
+    
+    // Actualizar totales
+    actualizarTotales();
+}
+
+// Función para mostrar carrito vacío
+function mostrarCarritoVacio() {
+    const carritoVacio = document.querySelector('.mainCarritoVacio');
+    const carritoProductos = document.querySelector('.mainCarritoProductos');
+    
+    if (carritoVacio) carritoVacio.style.display = 'block';
+    if (carritoProductos) carritoProductos.style.display = 'none';
+}
+
+// Función para cambiar la cantidad de un producto
+function cambiarCantidad(productoId, cambio) {
+    const producto = carrito.find(item => item.id === productoId);
+    if (producto) {
+        producto.cantidad += cambio;
+        
+        // Si la cantidad llega a 0, eliminar el producto
+        if (producto.cantidad <= 0) {
+            eliminarProducto(productoId);
+            return;
+        }
+        
+        // Guardar cambios en localStorage
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        
+        // Actualizar la vista
+        mostrarProductosCarrito();
+        actualizarContadorCarrito();
+    }
+}
+
+// Función para eliminar un producto del carrito
+function eliminarProducto(productoId) {
+    carrito = carrito.filter(item => item.id !== productoId);
+    
+    // Guardar cambios en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    
+    // Actualizar la vista
+    if (carrito.length > 0) {
+        mostrarProductosCarrito();
+    } else {
+        mostrarCarritoVacio();
+    }
+    actualizarContadorCarrito();
+}
+
+// Función para actualizar los totales
+function actualizarTotales() {
+    const subtotal = carrito.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0);
+    const total = subtotal; // Aquí podrías agregar impuestos, descuentos, etc.
+    
+    const subtotalElement = document.getElementById('subtotal');
+    const totalElement = document.getElementById('total');
+    
+    if (subtotalElement) subtotalElement.textContent = `$${subtotal}`;
+    if (totalElement) totalElement.textContent = `$${total}`;
+}
+
+// Función para actualizar el contador del carrito en el header
+function actualizarContadorCarrito() {
+    const totalItems = carrito.reduce((total, producto) => total + producto.cantidad, 0);
+    const carritoLink = document.querySelector('a[href*="Carritodecompras.html"], a[href*="carrito"]');
+    
+    if (carritoLink) {
+        const icono = carritoLink.querySelector('i');
+        if (icono && totalItems > 0) {
+            // Crear o actualizar badge
+            let badge = carritoLink.querySelector('.badge');
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'badge bg-danger position-absolute top-0 start-100 translate-middle';
+                carritoLink.style.position = 'relative';
+                carritoLink.appendChild(badge);
+            }
+            badge.textContent = totalItems;
+        } else if (badge) {
+            badge.remove();
+        }
+    }
+}
+
+// Función para finalizar la compra
+function finalizarCompra() {
+    if (carrito.length === 0) {
+        alert('Tu carrito está vacío');
+        return;
+    }
+    
+    const total = carrito.reduce((sum, producto) => sum + (producto.precio * producto.cantidad), 0);
+    
+    let resumen = "RESUMEN DE SU COMPRA:\n\n";
+    carrito.forEach(item => {
+        resumen += `- ${item.nombre} x${item.cantidad} - $${item.precio * item.cantidad}\n`;
+    });
+    resumen += `\n---------------------\n`;
+    resumen += `TOTAL: $${total}\n\n`;
+    
+    alert(resumen);
+    
+    // Limpiar carrito después de la compra
+    carrito = [];
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    
+    // Actualizar vista
+    mostrarCarritoVacio();
+    actualizarContadorCarrito();
+    
+    alert("¡Gracias por su compra, vuelva pronto!");
 }
 
 // en este caso los parametros usuario y pass son los datos ingresados por el usuario y dentro de la misma siempre deben llamarse igual

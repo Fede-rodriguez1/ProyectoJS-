@@ -1,0 +1,164 @@
+/* -----------------------------ESTILOS PARA CARRITO */
+
+#mainCarrito{
+    background-color: rgb(247, 247, 247);
+    max-width: 1700px;
+    margin: 0 auto;
+    padding-top: 100px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400 ;
+    display:flex ;
+    text-align: center;
+    flex-direction: column;
+    
+    .mainCarritoVacio{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        height: 400px;
+            h2{
+                color: #085C5A;
+                font-size: 30px;
+                animation: fadeInUp 1.5s ease-in-out;
+            }
+            button{
+                font-size: 15px;
+                height: 50px;
+                width: 200px;
+                background-color:  #085C5A;
+                color: aliceblue;
+                border-radius: 10px;
+            }
+            button:hover {
+                background-color: #05302f; 
+                color: #fff; 
+                transform: scale(1.05); 
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+            }
+    }
+    .mainCarritoRecomendacion{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .mainRecomendaciones{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+            img{
+                border-radius: 20px ;
+                transition: box-shadow 0.5s ease, border-radius 0.5s ease, transform 0.5s ease;  
+            }
+            img:hover {
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); 
+                border-radius: 10px;
+                transform: scale(1.02); 
+            } 
+            p:hover{
+                color: #05302f;
+                cursor: pointer;
+                font-weight: 600;
+            }
+    }
+    
+    // Estilos para productos del carrito
+    .mainCarritoProductos {
+        .lista-productos {
+            .producto-carrito {
+                background-color: white;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                
+                img {
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                }
+                
+                h5 {
+                    color: #05302f;
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                }
+                
+                .cantidad-controls {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    button {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 12px;
+                    }
+                    
+                    span {
+                        margin: 0 10px;
+                        font-weight: bold;
+                        min-width: 20px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        
+        .resumen-carrito {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 120px;
+            
+            h3 {
+                color: #05302f;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            
+            .resumen-detalle {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+                margin-bottom: 20px;
+                
+                .subtotal, .total {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 10px;
+                    
+                    span:last-child {
+                        font-weight: bold;
+                    }
+                }
+                
+                .total {
+                    font-size: 1.2em;
+                    color: #05302f;
+                    border-top: 1px solid #eee;
+                    padding-top: 10px;
+                    margin-top: 10px;
+                }
+            }
+            
+            .btn-primary {
+                background-color: #085C5A;
+                border-color: #085C5A;
+                
+                &:hover {
+                    background-color: #05302f;
+                    border-color: #05302f;
+                }
+            }
+        }
+    }
+}
+
+
+/* ----------------------------- FIN DE ESTILOS PARA CARRITO */
